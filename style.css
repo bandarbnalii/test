@@ -220,20 +220,34 @@ p {
     cursor: pointer;
     padding: 0.5rem;
     z-index: 1001;
+    transition: var(--transition-normal);
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
 }
 
 .nav-toggle span {
     width: 25px;
     height: 3px;
-    background: #333;
+    background: var(--text-primary);
     margin: 3px 0;
     transition: var(--transition-normal);
     border-radius: 2px;
+    transform-origin: center;
 }
 
 /* Mobile Navigation Menu */
 .nav-menu.active {
-    display: flex;
+    display: flex !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -247,12 +261,87 @@ p {
     gap: 2rem;
     z-index: 1000;
     animation: slideIn 0.3s ease;
+    padding: 2rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-menu.active li {
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.nav-menu.active li:nth-child(1) { animation-delay: 0.1s; }
+.nav-menu.active li:nth-child(2) { animation-delay: 0.2s; }
+.nav-menu.active li:nth-child(3) { animation-delay: 0.3s; }
+.nav-menu.active li:nth-child(4) { animation-delay: 0.4s; }
+.nav-menu.active li:nth-child(5) { animation-delay: 0.5s; }
+.nav-menu.active li:nth-child(6) { animation-delay: 0.6s; }
+.nav-menu.active li:nth-child(7) { animation-delay: 0.7s; }
+.nav-menu.active li:nth-child(8) { animation-delay: 0.8s; }
+
+.nav-menu.active a {
+    font-size: 1.5rem !important;
+    padding: 1rem 2rem !important;
+    border-radius: 10px;
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary-color) !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.nav-menu.active a:hover {
+    background: var(--primary-color);
+    color: white !important;
+    transform: scale(1.05);
+}
+
+/* Close Button for Mobile Menu */
+.nav-menu.active::before {
+    content: '×';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 50%;
+    transition: var(--transition-normal);
+    z-index: 1001;
+}
+
+.nav-menu.active::before:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
         transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -1387,10 +1476,22 @@ p {
     
     .nav-menu {
         display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
     }
     
     .nav-toggle {
         display: flex;
+    }
+    
+    .nav-menu.active {
+        display: flex !important;
     }
     
     .hero-content {
@@ -1598,6 +1699,16 @@ p {
         width: 200px;
         height: 200px;
     }
+    
+    /* Mobile Menu Improvements */
+    .nav-menu.active {
+        padding: 1rem;
+    }
+    
+    .nav-menu.active a {
+        font-size: 1.3rem !important;
+        padding: 0.8rem 1.5rem !important;
+    }
 }
 
 /* Mobile Medium */
@@ -1676,6 +1787,24 @@ p {
     .section-header p {
         font-size: 1rem;
     }
+    
+    /* Mobile Menu Improvements */
+    .nav-menu.active {
+        padding: 0.8rem;
+    }
+    
+    .nav-menu.active a {
+        font-size: 1.2rem !important;
+        padding: 0.7rem 1.2rem !important;
+    }
+    
+    .nav-menu.active::before {
+        top: 15px;
+        right: 15px;
+        font-size: 1.8rem;
+        width: 35px;
+        height: 35px;
+    }
 }
 
 /* Mobile Small */
@@ -1731,6 +1860,24 @@ p {
     .section-header h2 {
         font-size: 1.6rem;
     }
+    
+    /* Mobile Menu Improvements */
+    .nav-menu.active {
+        padding: 0.6rem;
+    }
+    
+    .nav-menu.active a {
+        font-size: 1.1rem !important;
+        padding: 0.6rem 1rem !important;
+    }
+    
+    .nav-menu.active::before {
+        top: 12px;
+        right: 12px;
+        font-size: 1.6rem;
+        width: 30px;
+        height: 30px;
+    }
 }
 
 /* Landscape Orientation */
@@ -1783,6 +1930,16 @@ p {
     
     .floating-cards .card span {
         font-size: 0.6rem;
+    }
+    
+    /* Mobile Menu in Landscape */
+    .nav-menu.active {
+        padding: 1rem;
+    }
+    
+    .nav-menu.active a {
+        font-size: 1.2rem !important;
+        padding: 0.8rem 1.5rem !important;
     }
 }
 
