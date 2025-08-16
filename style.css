@@ -245,32 +245,45 @@ p {
     transform-origin: center;
 }
 
-/* Mobile Navigation Menu */
+/* Mobile Navigation Menu - Side Panel */
 .nav-menu.active {
     display: flex !important;
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
-    bottom: 0;
+    width: 280px;
+    height: 100vh;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
     z-index: 1000;
-    animation: slideIn 0.3s ease;
-    padding: 2rem;
+    animation: slideInRight 0.3s ease;
+    padding: 2rem 1.5rem;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Menu Header */
+.nav-menu.active::after {
+    content: 'القائمة';
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-align: center;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--bg-secondary);
 }
 
 .nav-menu.active li {
     opacity: 0;
     animation: fadeInUp 0.5s ease forwards;
-    margin: 0.5rem 0;
-    text-align: center;
+    margin: 0.3rem 0;
+    text-align: right;
 }
 
 .nav-menu.active li:nth-child(1) { animation-delay: 0.1s; }
@@ -283,22 +296,30 @@ p {
 .nav-menu.active li:nth-child(8) { animation-delay: 0.8s; }
 
 .nav-menu.active a {
-    font-size: 1.5rem !important;
-    padding: 1rem 2rem !important;
-    border-radius: 10px;
-    background: rgba(102, 126, 234, 0.1);
-    color: var(--primary-color) !important;
+    font-size: 1.2rem !important;
+    padding: 0.8rem 1rem !important;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-primary) !important;
     font-weight: 600;
     transition: all 0.3s ease;
     display: block;
     width: 100%;
-    text-align: center;
+    text-align: right;
+    border-right: 3px solid transparent;
+    position: relative;
 }
 
 .nav-menu.active a:hover {
-    background: var(--primary-color);
-    color: white !important;
-    transform: scale(1.05);
+    background: rgba(102, 126, 234, 0.1);
+    color: var(--primary-color) !important;
+    border-right-color: var(--primary-color);
+    transform: translateX(-5px);
+}
+
+.nav-menu.active a:active {
+    background: rgba(102, 126, 234, 0.2);
+    transform: translateX(-3px);
 }
 
 /* Close Button for Mobile Menu */
@@ -306,7 +327,7 @@ p {
     content: '×';
     position: absolute;
     top: 20px;
-    right: 20px;
+    left: 20px;
     font-size: 2rem;
     color: var(--primary-color);
     cursor: pointer;
@@ -335,6 +356,17 @@ p {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
@@ -1492,6 +1524,7 @@ p {
     
     .nav-menu.active {
         display: flex !important;
+        width: 280px;
     }
     
     .hero-content {
@@ -1702,12 +1735,13 @@ p {
     
     /* Mobile Menu Improvements */
     .nav-menu.active {
-        padding: 1rem;
+        width: 260px;
+        padding: 1.5rem 1rem;
     }
     
     .nav-menu.active a {
-        font-size: 1.3rem !important;
-        padding: 0.8rem 1.5rem !important;
+        font-size: 1.1rem !important;
+        padding: 0.7rem 0.8rem !important;
     }
 }
 
@@ -1790,17 +1824,18 @@ p {
     
     /* Mobile Menu Improvements */
     .nav-menu.active {
-        padding: 0.8rem;
+        width: 240px;
+        padding: 1.2rem 0.8rem;
     }
     
     .nav-menu.active a {
-        font-size: 1.2rem !important;
-        padding: 0.7rem 1.2rem !important;
+        font-size: 1rem !important;
+        padding: 0.6rem 0.7rem !important;
     }
     
     .nav-menu.active::before {
         top: 15px;
-        right: 15px;
+        left: 15px;
         font-size: 1.8rem;
         width: 35px;
         height: 35px;
@@ -1863,17 +1898,18 @@ p {
     
     /* Mobile Menu Improvements */
     .nav-menu.active {
-        padding: 0.6rem;
+        width: 220px;
+        padding: 1rem 0.6rem;
     }
     
     .nav-menu.active a {
-        font-size: 1.1rem !important;
-        padding: 0.6rem 1rem !important;
+        font-size: 0.95rem !important;
+        padding: 0.5rem 0.6rem !important;
     }
     
     .nav-menu.active::before {
         top: 12px;
-        right: 12px;
+        left: 12px;
         font-size: 1.6rem;
         width: 30px;
         height: 30px;
@@ -1934,12 +1970,13 @@ p {
     
     /* Mobile Menu in Landscape */
     .nav-menu.active {
-        padding: 1rem;
+        width: 250px;
+        padding: 1.5rem 1rem;
     }
     
     .nav-menu.active a {
-        font-size: 1.2rem !important;
-        padding: 0.8rem 1.5rem !important;
+        font-size: 1.1rem !important;
+        padding: 0.7rem 1rem !important;
     }
 }
 
