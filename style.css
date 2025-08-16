@@ -342,12 +342,43 @@ p {
     border-radius: 50%;
     transition: var(--transition-normal);
     z-index: 1001;
+    pointer-events: auto;
 }
 
 .nav-menu.active::before:hover {
     background: var(--primary-color);
     color: white;
     transform: scale(1.1);
+}
+
+/* Alternative Close Button */
+.mobile-close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(102, 126, 234, 0.1);
+    border: none;
+    border-radius: 50%;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-normal);
+    z-index: 1002;
+}
+
+.mobile-close-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+}
+
+.nav-menu.active + .mobile-close-btn {
+    display: flex;
 }
 
 @keyframes slideIn {
@@ -1347,8 +1378,8 @@ p {
     position: fixed;
     bottom: clamp(80px, 20vw, 100px);
     right: clamp(15px, 4vw, 30px);
-    width: clamp(40px, 10vw, 50px);
-    height: clamp(40px, 10vw, 50px);
+    width: clamp(50px, 12vw, 60px);
+    height: clamp(50px, 12vw, 60px);
     background: var(--primary-color);
     border-radius: 50%;
     display: flex;
@@ -1360,7 +1391,8 @@ p {
     visibility: hidden;
     transition: var(--transition-normal);
     z-index: 1000;
-    min-height: 44px; /* Minimum touch target */
+    min-height: 50px; /* Better touch target */
+    box-shadow: var(--shadow-md);
 }
 
 .back-to-top.show {
@@ -1509,8 +1541,8 @@ p {
     .back-to-top {
         bottom: 90px;
         right: 25px;
-        width: 45px;
-        height: 45px;
+        width: 55px;
+        height: 55px;
     }
 }
 
@@ -1682,8 +1714,8 @@ p {
     .back-to-top {
         bottom: 80px;
         right: 20px;
-        width: 40px;
-        height: 40px;
+        width: 55px;
+        height: 55px;
     }
 }
 
@@ -1843,8 +1875,8 @@ p {
     .back-to-top {
         bottom: 70px;
         right: 15px;
-        width: 35px;
-        height: 35px;
+        width: 50px;
+        height: 50px;
     }
     
     .nav-brand h2 {
@@ -1921,8 +1953,8 @@ p {
     .back-to-top {
         bottom: 60px;
         right: 12px;
-        width: 30px;
-        height: 30px;
+        width: 45px;
+        height: 45px;
     }
     
     .nav-brand h2 {

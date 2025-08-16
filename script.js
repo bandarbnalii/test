@@ -46,11 +46,20 @@ window.addEventListener('load', function() {
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    const mobileCloseBtn = document.getElementById('mobileCloseBtn');
     
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
             navMenu.classList.toggle('active');
             navToggle.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile menu with close button
+    if (mobileCloseBtn) {
+        mobileCloseBtn.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
         });
     }
     
@@ -65,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+        if (!navToggle.contains(e.target) && !navMenu.contains(e.target) && !mobileCloseBtn.contains(e.target)) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         }
